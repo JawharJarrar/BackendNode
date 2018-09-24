@@ -38,41 +38,31 @@ describe('Users', function () {
     });
     it('should delete a SINGLE user on /users/<id> DELETE', function (done) {
         chai.request(app_1.default)
-            .get('/users')
-            .end(function (err, res) {
-            chai.request(app_1.default)
-                .del('/users/' + res.body[0].id)
-                .end(function (error, response) {
-                response.should.have.status(200);
-                should.exist(res.body);
-                // tslint:disable-next-line:no-unused-expression
-                response.should.be.json;
-                response.body.should.have.property('REMOVED');
-                done();
-            });
+            .del('/users/' + 77)
+            .end(function (error, response) {
+            response.should.have.status(200);
+            // tslint:disable-next-line:no-unused-expression
+            response.should.be.json;
+            response.body.should.have.property('REMOVED');
+            done();
         });
     });
     it('should update a SINGLE user on /users/<id> PUT', function (done) {
         chai.request(app_1.default)
-            .get('/users')
-            .end(function (err, res) {
-            chai.request(app_1.default)
-                .put('/users/' + res.body[0].id)
-                .send({ 'name': 'Java',
-                'email': 'Script@gmail.com',
-                'phone': '50729254',
-                'website': 'slack.com'
-            })
-                .end(function (error, response) {
-                response.should.have.status(200);
-                should.exist(res.body);
-                // tslint:disable-next-line:no-unused-expression
-                response.should.be.json;
-                response.body.should.be.a('object');
-                response.body.should.have.property('UPDATED');
-                response.body.UPDATED.should.be.a('object');
-                done();
-            });
+            .put('/users/' + 77)
+            .send({ 'name': 'Java',
+            'email': 'Script@gmail.com',
+            'phone': '50729254',
+            'website': 'slack.com'
+        })
+            .end(function (error, response) {
+            response.should.have.status(200);
+            // tslint:disable-next-line:no-unused-expression
+            response.should.be.json;
+            response.body.should.be.a('object');
+            response.body.should.have.property('UPDATED');
+            response.body.UPDATED.should.be.a('object');
+            done();
         });
     });
     it('should list ALL users on /users GET', function (done) {

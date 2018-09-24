@@ -5,8 +5,8 @@ import * as mongoose from 'mongoose';
 const shortid = require('shortid');
 const router = express.Router();
 const db = require  ('../database');
-const Comment = mongoose.model('Comment', CommentSchema);
-const Post = mongoose.model('Post', PostSchema);
+const Comment = mongoose.model('comment', CommentSchema);
+const Post = mongoose.model('post', PostSchema);
 
 /**
  * posts apis

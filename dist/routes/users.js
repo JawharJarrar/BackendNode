@@ -11,6 +11,14 @@ router.get('/', FindAllUsers);
 router.post('/', AddUser);
 router.delete('/:id', DeleteUser);
 router.put('/:id', UpdateUser);
+function FindAllUsers(req, res, next) {
+    db.query('select * from  users', (error, rows, fields) => {
+        if (error) {
+            res.send('mysql Update error for user ');
+        }
+        res.json(rows);
+    });
+}
 function UpdateUser(req, res, next) {
     const user = req.body;
     db.query('UPDATE users SET name=?, email=?,phone=? WHERE id=? ', [
@@ -29,14 +37,6 @@ function UpdateUser(req, res, next) {
         }
     });
     res.json({ 'UPDATED': user });
-}
-function FindAllUsers(req, res, next) {
-    db.query('select * from  users', (error, rows, fields) => {
-        if (error) {
-            res.send('mysql Update error for user ');
-        }
-        res.json(rows);
-    });
 }
 function DeleteUser(req, res, next) {
     db.query('Delete from  users  where id=?', [req.params.id], (err, rows, fields) => {

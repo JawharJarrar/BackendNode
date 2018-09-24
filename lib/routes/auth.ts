@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 const shortid = require('shortid');
 const router = express.Router();
 const db = require  ('../database');
-const Auth = mongoose.model('Auth', AuthSchema);
+const Auth = mongoose.model('auth', AuthSchema);
 /**
  * authentification apis
  */

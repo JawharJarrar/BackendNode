@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 const shortid = require('shortid');
 const router = express.Router();
 const db = require  ('../database');
-const Comment = mongoose.model('Comment', CommentSchema);
+const Comment = mongoose.model('comment', CommentSchema);
 /**
  * comments apis
  */

@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 const shortid = require('shortid');
 const router = express.Router();
 const db = require  ('../database');
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('user', UserSchema);
 
 router.get('/', FindAllUsers);
 router.post('/', AddUser);

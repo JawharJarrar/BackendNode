@@ -37,11 +37,11 @@ function Register(req, res, next) {
 }
 function Login(req, res, next) {
     const auth = req.body;
-    Auth.findOne({ email: auth.email, password: auth.password }, function (error, post) {
+    Auth.findOne({ email: auth.email, password: auth.password }, function (error, user) {
         if (error) {
-            res.json({ 'register error ': error });
+            res.json({ 'login error ': error });
         }
-        res.send(post);
+        res.send(user);
     });
 }
 module.exports = router;

@@ -37,18 +37,13 @@ describe('Comments', function () {
     });
     it('should delete a SINGLE comment on /comments/<id> DELETE', function (done) {
         chai.request(app_1.default)
-            .get('/comments')
-            .end(function (err, res) {
-            chai.request(app_1.default)
-                .del('/comments/' + res.body[0].id)
-                .end(function (error, response) {
-                response.should.have.status(200);
-                should.exist(res.body);
-                // tslint:disable-next-line:no-unused-expression
-                response.should.be.json;
-                response.body.should.have.property('REMOVED');
-                done();
-            });
+            .del('/comments/' + 66)
+            .end(function (error, response) {
+            response.should.have.status(200);
+            // tslint:disable-next-line:no-unused-expression
+            response.should.be.json;
+            response.body.should.have.property('REMOVED');
+            done();
         });
     });
     it('should add a SINGLE comment on /comments to a post', function (done) {
@@ -70,24 +65,19 @@ describe('Comments', function () {
     });
     it('should update a SINGLE comments on /comments/<id> PUT', function (done) {
         chai.request(app_1.default)
-            .get('/comments')
-            .end(function (err, res) {
-            chai.request(app_1.default)
-                .put('/posts/' + res.body[0].id)
-                .send({ 'name': 'comment',
-                'email': 'comment@gmail.com',
-                'body': 'comment@gmail.com',
-                'postId': '14' })
-                .end(function (error, response) {
-                response.should.have.status(200);
-                should.exist(res.body);
-                // tslint:disable-next-line:no-unused-expression
-                response.should.be.json;
-                response.body.should.be.a('object');
-                response.body.should.have.property('UPDATED');
-                response.body.UPDATED.should.be.a('object');
-                done();
-            });
+            .put('/posts/' + 66)
+            .send({ 'name': 'comment',
+            'email': 'comment@gmail.com',
+            'body': 'comment@gmail.com',
+            'postId': '14' })
+            .end(function (error, response) {
+            response.should.have.status(200);
+            // tslint:disable-next-line:no-unused-expression
+            response.should.be.json;
+            response.body.should.be.a('object');
+            response.body.should.have.property('UPDATED');
+            response.body.UPDATED.should.be.a('object');
+            done();
         });
     });
 });
